@@ -42,3 +42,10 @@ console.log(Son.prototype.constructor); //Son
 
 let son1 = new Son();
 son1.view();
+
+// 方法3 apply call只能拷贝成员 原型对象上的没有拷贝
+function Son() {
+  Father.apply(this); //将Father对象的成员放到Son对象上,把Father的this指向为Son
+}
+let son = new Son();
+soon.view(); // 会报错
