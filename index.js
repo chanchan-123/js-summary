@@ -1,12 +1,10 @@
-function Father() {
-  this.type = "Father"
+function O1(name) {
+  this.name = name;
 }
-Father.prototype.view = function() {
-  console.log('Father View');
-};
-function Son(){
-  Father.apply(this)//将Father对象的成员放到Son对象上,把Father的this指向为Son
-  this.name = 'lisi'
-}
-let son2 = new Son();
-console.dir(son2)
+
+let a1 = new O1('zhangsan');
+
+let a2 = {};
+console.log(a1,a2)
+a2.call(a1, 'lisi');
+// console.log(a2.name);
