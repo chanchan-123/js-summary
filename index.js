@@ -1,10 +1,28 @@
-function O1(name) {
-  this.name = name;
+let target = {
+  "001":"北京",
+  "001":"北京",
+  "001":"北京",
 }
 
-let a1 = new O1('zhangsan');
+let pro = new Proxy(target,{
+  
+  get:function(target,key){
+    console.log('getter')
+    console.log(target,key)
+    return target[key]
+  },
+  set:function(target,key,value){
+    console.log('setter')
+    console.log(target,key,value)
+    if( key === 'age' && (value > 100 || value < 0) ){
+      console.log('年龄不符合实际');
+      target[key] = 100
+    }else{
+      target[key] = value;
+    }
+  },
+})
 
-let a2 = {};
-console.log(a1,a2)
-a2.call(a1, 'lisi');
-// console.log(a2.name);
+pro.age = -5 // setter
+
+console.log(pro.age)
